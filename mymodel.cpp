@@ -9,7 +9,7 @@ mymodel::mymodel(QObject *parent):QAbstractTableModel(parent)
 }
 int mymodel::rowCount(const QModelIndex &)const
 {
-    return 4;
+    return 3;
 }
 int mymodel::columnCount(const QModelIndex &)const
 {
@@ -18,6 +18,8 @@ int mymodel::columnCount(const QModelIndex &)const
 QVariant mymodel::data(const QModelIndex &index, int role)const 
 {
     if(role == Qt::DisplayRole)
-        return QString("table");
+        return QString("Row%1, column%2")
+                    .arg(index.row()+1)
+                    .arg(index.column()+1);
     return QVariant();
 }
