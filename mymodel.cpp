@@ -11,14 +11,14 @@
 
 mymodel::mymodel(QObject *parent):QAbstractTableModel(parent)
 {
-    QTimer timer(this);
-    timer.setInterval(100);
+    auto timer = new QTimer(this);
+    timer->setInterval(1000);
     
-    connect(&timer,SIGNAL(timeout()), this,SLOT(timerhit()));
-    timer.start();
+    connect(timer,SIGNAL(timeout()), this,SLOT(timerHit()));;
+    timer->start();
 }
 
-void mymodel::timerhit()
+void mymodel::timerHit()
 {
     QModelIndex index = createIndex(1, 1);
     emit dataChanged(index, index);
