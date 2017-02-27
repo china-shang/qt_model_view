@@ -49,3 +49,22 @@ QVariant mymodel::data(const QModelIndex &index, int role)const
     }
     return QVariant();
 }
+
+QVariant mymodel::headerData(int section, Qt::Orientation orientation, int role)const 
+{
+    if(role == Qt::DisplayRole)
+    {
+        if(orientation == Qt::Horizontal){
+            switch(section)
+            {
+                case 0:
+                    return QString("first");
+                case 1:
+                    return QString("second");
+                case 2:
+                    return QString("third");
+            }
+        }
+    }
+    return QVariant();
+}
