@@ -4,14 +4,13 @@
  ************************************************************************/
  #include <QtWidgets/QApplication>
  #include <QtWidgets/QTableView>
- #include "mymodel.h"
+#include "mainwindow.h"
+
  int main(int argc, char *argv[])
  {
     QApplication app(argc, argv);
-    QTableView tableView;
-    mymodel myModel(0);
-    tableView.setModel( &myModel );
-    tableView.show();
+    mainwindow win;
+    win.show();
     return app.exec();
  }
 

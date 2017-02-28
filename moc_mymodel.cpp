@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mymodel_t {
     QByteArrayData data[3];
-    char stringdata0[18];
+    char stringdata0[22];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,11 +30,11 @@ struct qt_meta_stringdata_mymodel_t {
 static const qt_meta_stringdata_mymodel_t qt_meta_stringdata_mymodel = {
     {
 QT_MOC_LITERAL(0, 0, 7), // "mymodel"
-QT_MOC_LITERAL(1, 8, 8), // "timerHit"
-QT_MOC_LITERAL(2, 17, 0) // ""
+QT_MOC_LITERAL(1, 8, 12), // "editComplete"
+QT_MOC_LITERAL(2, 21, 0) // ""
 
     },
-    "mymodel\0timerHit\0"
+    "mymodel\0editComplete\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,13 +49,13 @@ static const uint qt_meta_data_mymodel[] = {
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
 
- // slots: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x0a /* Public */,
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   19,    2, 0x06 /* Public */,
 
- // slots: parameters
-    QMetaType::Void,
+ // signals: parameters
+    QMetaType::Void, QMetaType::QString,    2,
 
        0        // eod
 };
@@ -66,11 +66,20 @@ void mymodel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         mymodel *_t = static_cast<mymodel *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->timerHit(); break;
+        case 0: _t->editComplete((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (mymodel::*_t)(const QString & );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&mymodel::editComplete)) {
+                *result = 0;
+                return;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject mymodel::staticMetaObject = {
@@ -107,5 +116,12 @@ int mymodel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 1;
     }
     return _id;
+}
+
+// SIGNAL 0
+void mymodel::editComplete(const QString & _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

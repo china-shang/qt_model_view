@@ -9,20 +9,18 @@
 #include <QBrush>
 #include "mymodel.h"
 
-mymodel::mymodel(QObject *parent):QAbstractTableModel(parent)
+mymodel::mymodel(QObject *parent):QAbstractTableModel(parent), 
+    Row(3), Col(3)
 {
-    auto timer = new QTimer(this);
-    timer->setInterval(1000);
-    
-    connect(timer,SIGNAL(timeout()), this,SLOT(timerHit()));;
-    timer->start();
+    for(int row = 0;row < Row;row++ )
+    {
+        for(int col = 0;col < Col;col++)
+        {
+            m_gridData[row][col] = "data";
+        }
+    }
 }
 
-void mymodel::timerHit()
-{
-    QModelIndex index = createIndex(1, 1);
-    emit dataChanged(index, index);
-}
 
 int mymodel::rowCount(const QModelIndex &)const
 {
@@ -36,16 +34,9 @@ int mymodel::columnCount(const QModelIndex &)const
 
 QVariant mymodel::data(const QModelIndex &index, int role)const 
 {
-
-    int row = index.row();
-    int col = index.column();
-
     if(role == Qt::DisplayRole)
     {
-        if(row == 1 && col == 1)
-        {
-            return QTime::currentTime().toString();
-        }
+        return m_gridData[index.row()][index.column()];
     }
     return QVariant();
 }
@@ -67,4 +58,32 @@ QVariant mymodel::headerData(int section, Qt::Orientation orientation, int role)
         }
     }
     return QVariant();
+}
+
+bool mymodel::setData(const QModelIndex & index, const QVariant & value,
+            int role)
+{
+    QString result;
+    if(role == Qt::EditRole)
+    {
+        if(!value.toString().isEmpty())
+        {
+            m_gridData[index.row()][index.column()] = value.toString();
+            qDebug()<<value.toString();
+        }
+        result = value.toString();
+//        for(int row = 0; row < 3;row++)
+//        {
+//            for(int col = 0;col < 3;col++)
+//            {
+//                result += m_gridData[row][col] = ' ';
+//            }
+//        }
+    emit editComplete(result);
+    }
+    return true;
+}
+Qt::ItemFlags mymodel::flags(const QModelIndex &index)const 
+{
+    return Qt::ItemIsEditable|QAbstractTableModel::flags(index);
 }
