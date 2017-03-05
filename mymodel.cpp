@@ -58,6 +58,10 @@ QVariant mymodel::headerData(int section, Qt::Orientation orientation, int role)
             }
         }
     }
+    if(role == Qt::EditRole)
+    {
+        return 99;
+    }
     return QVariant();
 }
 

@@ -10,5 +10,7 @@ mainwindow::mainwindow(QWidget *parent)
 {
     view->setModel(model);
     setCentralWidget(view);
+    delegate = new mydelegate(view);
+    view->setItemDelegate(delegate);
 }
 

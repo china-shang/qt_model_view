@@ -8,6 +8,7 @@
 #include <QTableView>
 #include <QMainWindow>
 #include "mymodel.h"
+#include "mydelegate.h"
 
 class mainwindow:public QMainWindow
 {
@@ -17,6 +18,7 @@ public:
 private:
     mymodel *model;
     QTableView *view;
+    mydelegate *delegate;
 };
 
 
