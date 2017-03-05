@@ -36,8 +36,9 @@ QVariant mymodel::data(const QModelIndex &index, int role)const
 {
     if(role == Qt::DisplayRole)
     {
-        return m_gridData[index.row()][index.column()];
+       return m_gridData[index.row()][index.column()];
     }
+
     return QVariant();
 }
 
@@ -49,11 +50,11 @@ QVariant mymodel::headerData(int section, Qt::Orientation orientation, int role)
             switch(section)
             {
                 case 0:
-                    return QString("first");
+                    return 1;
                 case 1:
-                    return QString("second");
+                    return 2;
                 case 2:
-                    return QString("third");
+                    return 3;
             }
         }
     }

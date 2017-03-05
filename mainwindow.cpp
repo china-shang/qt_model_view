@@ -4,6 +4,7 @@
  ************************************************************************/
 
 #include "mainwindow.h"
+
 mainwindow::mainwindow(QWidget *parent)
     :QMainWindow(parent), model(new mymodel(0)), view(new QTableView(this))
 {
